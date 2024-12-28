@@ -1,38 +1,74 @@
-.App {
+/* src/App.css */
+.container {
   text-align: center;
+  margin-top: 50px;
+  background-color:  #e2e0e0;
+  padding-bottom: 25px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+table {
+  margin: 20px auto;
+  border-collapse: collapse;
+  width: 99%;
+  background-color: #f2f2f2;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  border-left: none;
+  border-right: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+th {
+  background-color:  #418559;
+  text-align: center;
+  /*border:1px solid #ddd*/
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+td {
+  text-align: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+tbody tr:last-child td {
+  border-bottom: 3px solid #418559;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  background-color: #418559;
+  transition: background-color 0.3s ease;
+  border-radius: 10px;
+  color: white
+}
+
+span {
+  margin: 0 10px;
+  padding: 10px 20px;
+  color: white;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  background-color: #418559;
+  transition: background-color 0.3s ease;
+  border-radius: 10px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+button:hover:not(:disabled) {
+  background-color: #ddd;
 }
