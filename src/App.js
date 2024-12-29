@@ -6,6 +6,7 @@ const App = () => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+
   
   useEffect(() => {
     fetch('https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json')
@@ -17,18 +18,27 @@ const App = () => {
       });
   }, []);
 
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+
+  
   const handleNextPage = () => {
-    if (currentPage < Math.ceil(data.length / itemsPerPage)) {
-      setCurrentPage(currentPage + 1);
+    if (currentPage === totalPages) {
+      setCurrentPage(1); 
+    } else {
+      setCurrentPage(currentPage + 1); 
     }
   };
 
+  
   const handlePreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
+    if (currentPage === 1) {
+      setCurrentPage(totalPages); 
+    } else {
+      setCurrentPage(currentPage - 1); 
     }
   };
 
+  
   const getPaginatedData = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
@@ -59,9 +69,21 @@ const App = () => {
         </tbody>
       </table>
       <div className="pagination-controls">
-        <button onClick={handlePreviousPage} disabled={currentPage === 1}>Previous</button>
-        <span> {currentPage}</span>
-        <button onClick={handleNextPage} disabled={currentPage === Math.ceil(data.length / itemsPerPage)}>Next</button>
+        <button
+          onClick={handlePreviousPage}
+          disabled={data.length === 0}
+          data-testid="prev-button"
+        >
+          Previous
+        </button>
+        <span data-testid="page-indicator">Page {currentPage}</span>
+        <button
+          onClick={handleNextPage}
+          disabled={data.length === 0}
+          data-testid="next-button"
+        >
+          Next
+        </button>
       </div>
     </div>
   );
